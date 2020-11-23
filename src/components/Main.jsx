@@ -1,17 +1,26 @@
 import React from "react";
 
-export default function Main({ products, setCartItems }) {
+export default function Main({ products, setCartItems, highToLow, LowToHigh }) {
   return (
     <>
-      <p>{`${products.length} product`}</p>
-      <div>
+      <div className="d-flex justify-content-between">
+        <p>{`${products.length} product`}</p>
+        <div>
+          <button onClick={() => highToLow()}>Low to High</button>
+          <button onClick={() => LowToHigh()}> High to Low</button>
+        </div>
+      </div>
+
+      <div className="d-flex flex-wrap">
         {products.map((product, i) => {
           const { sku, title, price, installments } = product;
           return (
-            <div key={i}>
+            <div key={i} className="text-center p-3 product-cart mt-3">
               <img src={`static/products/${sku}_1.jpg`} alt={title} />
-              <h2>{title}</h2>
-              <p>{price}</p>
+              <h2 className="product-title">{title}</h2>
+              <p className="product-price">
+                $ <span>{price}</span>
+              </p>
               {installments > 0 ? (
                 <p className="text-secondary">
                   or {installments} X $
@@ -21,6 +30,7 @@ export default function Main({ products, setCartItems }) {
                 ""
               )}
               <button
+                className="mt-4 product-btn"
                 onClick={() =>
                   setCartItems((prevState) => {
                     let cartProductIndex = prevState.findIndex(

@@ -75,18 +75,17 @@ export default function Landing() {
   };
 
   return (
-    <main className="d-flex">
-      <aside>
+    <main className="d-flex container-xl pt-3">
+      <aside className="sidebar">
+        <p>Sizes:</p>
         <Sidebar sizes={sizes} handleClick={handleClick} />
       </aside>
-      <section>
-        <div>
-          <button onClick={() => highToLow()}>High to Low</button>
-          <button onClick={() => LowToHigh()}>Low to High</button>
-        </div>
+      <section className="product">
         <Main
           products={filterProduct.length ? filterProduct : allProducts}
           setCartItems={setCartItems}
+          highToLow={highToLow}
+          LowToHigh={LowToHigh}
         />
       </section>
       <section>

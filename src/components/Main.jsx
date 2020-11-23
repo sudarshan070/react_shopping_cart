@@ -9,7 +9,7 @@ export default function Main({ products, setCartItems }) {
           const { sku, title, price, installments } = product;
           return (
             <div key={i}>
-              <img src={`static/products/${sku}_1.jpg`} alt="" />
+              <img src={`static/products/${sku}_1.jpg`} alt={title} />
               <h2>{title}</h2>
               <p>{price}</p>
               {installments > 0 ? (

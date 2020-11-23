@@ -44,6 +44,11 @@ export default function Landing() {
     localStorage.setItem("item", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  let removeCartItems = (id) => {
+    const removeItem = cartItems.filter((item) => item.id !== id);
+    setCartItems(removeItem);
+  };
+
   return (
     <main className="d-flex">
       <aside>
@@ -56,7 +61,7 @@ export default function Landing() {
         />
       </section>
       <section>
-        <Cart cartItems={cartItems} />
+        <Cart cartItems={cartItems} setCartItems={removeCartItems} />
       </section>
     </main>
   );

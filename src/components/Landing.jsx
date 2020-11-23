@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { products } from "../data.json";
+import Cart from "./Cart";
 import Main from "./Main";
 import Sidebar from "./Sidebar";
 
 export default function Landing() {
+  const [allProducts] = useState(products);
+  const [filterProduct, setFilterProduct] = useState([]);
   let [sizes, setSizes] = useState(
     [
       ...new Set(products.map((product) => product.availableSizes).flat()),
     ].map((size) => ({ label: size, checked: false }))
   );
-  const [allProducts] = useState(products);
-  let [filterProduct, setFilterProduct] = useState([]);
 
   const handleClick = (selectedSize) => {
     console.log(selectedSize);
@@ -26,6 +27,7 @@ export default function Landing() {
     let selectedSizes = updatedSizes
       .filter((singleSize) => singleSize.checked)
       .map((size) => size.label);
+
     setSizes(updatedSizes);
 
     let filterProduct = allProducts.filter((product) => {
@@ -34,14 +36,22 @@ export default function Landing() {
     setFilterProduct(filterProduct);
   };
 
+  const [cartItems, setCartItems] = useState([]);
+
   return (
-    <>
+    <main className="d-flex">
       <aside>
         <Sidebar sizes={sizes} handleClick={handleClick} />
       </aside>
       <section>
-        <Main products={filterProduct.length ? filterProduct : allProducts} />
+        <Main
+          products={filterProduct.length ? filterProduct : allProducts}
+          setCartItems={setCartItems}
+        />
       </section>
-    </>
+      <section>
+        <Cart cartItems={cartItems} />
+      </section>
+    </main>
   );
 }

@@ -49,6 +49,22 @@ export default function Landing() {
     setCartItems(removeItem);
   };
 
+  let increment = (id) => {
+    console.log(id, "increment");
+    let inc = cartItems.filter((item) =>
+      item.id === id ? (item.quantity += 1) : item
+    );
+    setCartItems(inc);
+  };
+
+  let decrement = (id) => {
+    console.log(id, "increment");
+    let dec = cartItems.filter((item) =>
+      item.id === id ? (item.quantity -= 1) : item
+    );
+    setCartItems(dec);
+  };
+
   return (
     <main className="d-flex">
       <aside>
@@ -61,7 +77,12 @@ export default function Landing() {
         />
       </section>
       <section>
-        <Cart cartItems={cartItems} setCartItems={removeCartItems} />
+        <Cart
+          cartItems={cartItems}
+          setCartItems={removeCartItems}
+          increment={increment}
+          decrement={decrement}
+        />
       </section>
     </main>
   );

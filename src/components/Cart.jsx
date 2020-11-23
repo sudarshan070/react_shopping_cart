@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function Cart({ cartItems, setCartItems }) {
+export default function Cart({
+  cartItems,
+  setCartItems,
+  increment,
+  decrement,
+}) {
   return (
     <div>
       {cartItems.map((item, i) => {
@@ -9,6 +14,10 @@ export default function Cart({ cartItems, setCartItems }) {
           <div key={i}>
             <button onClick={() => setCartItems(id)}>X</button>
             <img src={`/static/products/${sku}_2.jpg`} alt="" />
+            <div>
+              <button onClick={() => decrement(id)}>-</button>
+              <button onClick={() => increment(id)}>+</button>
+            </div>
             <p>{title}</p>
             <p>{quantity}</p>
             <p>{price}</p>
@@ -21,7 +30,7 @@ export default function Cart({ cartItems, setCartItems }) {
             Total:
             {cartItems.reduce((acc, cv) => {
               acc = acc + cv.price * cv.quantity;
-              return parseFloat(acc).toFixed(2);
+              return acc;
             }, 0)}
           </p>
         ) : (

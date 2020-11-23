@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { products } from "../data.json";
 import Cart from "./Cart";
 import Main from "./Main";
@@ -36,7 +36,13 @@ export default function Landing() {
     setFilterProduct(filterProduct);
   };
 
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(localStorage.getItem("item")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("item", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <main className="d-flex">

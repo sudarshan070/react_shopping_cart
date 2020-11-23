@@ -5,7 +5,7 @@ import Main from "./Main";
 import Sidebar from "./Sidebar";
 
 export default function Landing() {
-  const [allProducts] = useState(products);
+  const [allProducts, setAllProducts] = useState(products);
   const [filterProduct, setFilterProduct] = useState([]);
   let [sizes, setSizes] = useState(
     [
@@ -65,12 +65,25 @@ export default function Landing() {
     setCartItems(dec);
   };
 
+  let highToLow = () => {
+    let high = [...allProducts].sort((a, b) => a.price - b.price);
+    setAllProducts(high);
+  };
+  let LowToHigh = () => {
+    let low = [...allProducts].sort((a, b) => b.price - a.price);
+    setAllProducts(low);
+  };
+
   return (
     <main className="d-flex">
       <aside>
         <Sidebar sizes={sizes} handleClick={handleClick} />
       </aside>
       <section>
+        <div>
+          <button onClick={() => highToLow()}>High to Low</button>
+          <button onClick={() => LowToHigh()}>Low to High</button>
+        </div>
         <Main
           products={filterProduct.length ? filterProduct : allProducts}
           setCartItems={setCartItems}

@@ -18,7 +18,7 @@ export default function Main({ products, setCartItems }) {
                   {parseFloat(price / installments).toFixed(2)}
                 </p>
               ) : (
-                "No Installments"
+                ""
               )}
               <button
                 onClick={() =>

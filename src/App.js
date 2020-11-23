@@ -1,9 +1,9 @@
-
+import Landing from './components/Landing'
 
 function App() {
   return (
     <div >
-      <h1>React shopping cart</h1>
+      <Landing />
     </div>
   );
 }

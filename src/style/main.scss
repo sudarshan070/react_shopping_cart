@@ -40,6 +40,20 @@
   width: 25%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  .free-shipping {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+  }
+  .free-shipping-btn {
+    background: #1b1a20;
+    padding: 0.2rem 0.3rem;
+    font-size: 0.5rem;
+    color: #ffffff;
+    border: none;
+    outline: none;
+  }
   .product-btn {
     width: 100%;
     background: #1b1a20;
